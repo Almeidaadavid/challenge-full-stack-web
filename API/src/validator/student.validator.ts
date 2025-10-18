@@ -1,4 +1,4 @@
-import { CreateStudentForm } from "../interfaces/student.form";
+import { CreateStudentForm } from "../forms/student.form";
 import { UpdateStudentResponse } from "../responses/student.response";
 
 export class StudentValidator {

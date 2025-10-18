@@ -1,11 +1,11 @@
-import { CreateUserDTO } from "../interfaces/user.interface";
+import { CreateUserForm } from "../forms/user.form";
 
 export class UserValidator {
-    static validateCreate(data: CreateUserDTO) {
+    static validateCreate(data: CreateUserForm) {
         const requiredFields = ["name", "email", "Ra", "document"];
         
         const missingField = requiredFields.find((field) => {
-            !data[field as keyof CreateUserDTO]
+            !data[field as keyof CreateUserForm]
         })
 
         if (missingField) {
