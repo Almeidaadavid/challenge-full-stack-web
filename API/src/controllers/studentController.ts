@@ -28,16 +28,6 @@ export class StudentController {
         }
     }
 
-    delete = async(request: FastifyRequest<{Params: RequestParams}>, reply: FastifyReply) => {
-        try {
-            const { id }= request.params;
-            const teste = await this.studentService.delete(id);
-            return reply.code(204).send()
-        } catch (error: any) {
-            throw Error(error);
-        }
-    }
-
     update = async(request: FastifyRequest<{Params: RequestParams, Body: UpdateStudentForm}>, reply: FastifyReply) => {
         try {
             const { id } = request.params;
@@ -47,4 +37,14 @@ export class StudentController {
             throw Error(error);
         }
     }
+
+    delete = async(request: FastifyRequest<{Params: RequestParams}>, reply: FastifyReply) => {
+        try {
+            const { id }= request.params;
+            await this.studentService.delete(id);
+            return reply.code(204).send()
+        } catch (error: any) {
+            throw Error(error);
+        }
+    }    
 }

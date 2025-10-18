@@ -12,5 +12,6 @@ export async function studentRoute(app: FastifyInstance) {
 
     app.post('/', studentController.create);
     app.get('/', studentController.getAll);
+    app.patch('/:id', studentController.update)
     app.delete('/:id', studentController.delete)
 }
