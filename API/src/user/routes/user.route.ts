@@ -1,7 +1,7 @@
-import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
-import { UserRepository } from "../repositories/userRepository";
-import { UserService } from "../services/userService";
-import { UserController } from "../controllers/userController";
+import { FastifyInstance } from "fastify";
+import { UserService } from "../services/user.service";
+import { UserController } from "../controllers/user.controller";
+import { UserRepository } from "../repositories/user.repository";
 
 
 export async function userRoute(app: FastifyInstance) {

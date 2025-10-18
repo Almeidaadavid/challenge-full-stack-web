@@ -1,7 +1,8 @@
-import { PasswordHelper } from "../helper/password.helper";
 import { CreateUserForm } from "../forms/user.form";
-import { UserRepository } from "../repositories/userRepository";
-import { UserValidator } from "../validator/user.validator";
+import { PasswordHelper } from "../../common/helper/password.helper";
+import { UserRepository } from "../repositories/user.repository";
+import { UserValidator } from "../validators/user.validator";
+
 
 export class UserService {
     constructor(private readonly userRepository: UserRepository) {}

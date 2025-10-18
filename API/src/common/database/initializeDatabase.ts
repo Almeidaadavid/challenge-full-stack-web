@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { AppDataSource } from "./data-source";
+import { AppDataSource } from "./datasource";
 
 export async function InitializeDatabase(app: FastifyInstance) {
     try {

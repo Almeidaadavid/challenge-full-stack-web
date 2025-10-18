@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { UserService } from "../services/userService";
+import { UserService } from "../services/user.service";
 import { CreateUserForm } from "../forms/user.form";
 export class UserController {
     

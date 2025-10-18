@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
-import { StudentRepository } from "../repositories/studentRepository";
-import { StudentService } from "../services/studentService";
-import { StudentController } from "../controllers/studentController";
+import { StudentRepository } from "../repositories/student.repository";
+import { StudentService } from "../services/student.service";
+import { StudentController } from "../controller/student.controller";
 
 
 export async function studentRoute(app: FastifyInstance) {

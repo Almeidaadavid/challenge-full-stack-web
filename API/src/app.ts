@@ -1,6 +1,6 @@
 import fastify from "fastify";
-import { InitializeDatabase } from "./db/initializeDatabase";
-import { Routes } from "./routes";
+import { InitializeDatabase } from "./common/database/initializeDatabase";
+import { Routes } from "./common/routes";
 
 
 

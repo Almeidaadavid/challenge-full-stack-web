@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { StudentService } from "../services/studentService";
+import { StudentService } from "../services/student.service";
 import { CreateStudentForm, UpdateStudentForm } from "../forms/student.form";
 
 interface RequestParams {

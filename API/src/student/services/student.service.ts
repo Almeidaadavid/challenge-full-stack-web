@@ -1,6 +1,6 @@
 import { CreateStudentForm, UpdateStudentForm } from "../forms/student.form";
-import { StudentRepository } from "../repositories/studentRepository";
-import { StudentValidator } from "../validator/student.validator";
+import { StudentRepository } from "../repositories/student.repository";
+import { StudentValidator } from "../validators/student.validator";
 
 export class StudentService {
     constructor(private readonly studentRepository: StudentRepository) {}
