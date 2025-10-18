@@ -18,7 +18,7 @@ export async function InitializeApplication() {
         }
     });
     await InitializeDatabase(app);
-    app.register(Routes)
+    await app.register(Routes)
     const port = process.env.PORT || 3333;
 
     try {
