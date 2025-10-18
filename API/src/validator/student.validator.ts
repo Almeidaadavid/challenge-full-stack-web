@@ -1,5 +1,4 @@
-import { CreateStudentForm } from "../forms/student.form";
-import { UpdateStudentResponse } from "../responses/student.response";
+import { CreateStudentForm, UpdateStudentForm } from "../forms/student.form";
 
 export class StudentValidator {
     static validateCreate(data: CreateStudentForm) {
@@ -23,11 +22,11 @@ export class StudentValidator {
 
         return true;
     }
-    static validateUpdate(data: UpdateStudentResponse) {
+    static validateUpdate(data: UpdateStudentForm) {
         const requiredFields = ["name", "email"];
 
         const missingField = requiredFields.find((field) => {
-            !data[field as keyof UpdateStudentResponse]
+            !data[field as keyof UpdateStudentForm]
         })
 
         if (missingField) {
