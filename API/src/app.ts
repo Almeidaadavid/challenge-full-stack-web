@@ -1,5 +1,6 @@
 import fastify from "fastify";
 import { InitializeDatabase } from "./db/initializeDatabase";
+import { Routes } from "./routes";
 
 
 
@@ -17,6 +18,7 @@ export async function InitializeApplication() {
         }
     });
     await InitializeDatabase(app);
+    app.register(Routes)
     const port = process.env.PORT || 3333;
 
     try {
