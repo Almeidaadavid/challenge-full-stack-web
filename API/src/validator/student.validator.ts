@@ -1,11 +1,12 @@
-import { CreateStudentDTO } from "../interfaces/student.interface";
+import { CreateStudentForm } from "../interfaces/student.form";
+import { UpdateStudentResponse } from "../responses/student.response";
 
 export class StudentValidator {
-    static validateCreate(data: CreateStudentDTO) {
+    static validateCreate(data: CreateStudentForm) {
         const requiredFields = ["name", "email", "Ra", "document"];
 
         const missingField = requiredFields.find((field) => {
-            !data[field as keyof CreateStudentDTO]
+            !data[field as keyof CreateStudentForm]
         })
 
         if (missingField) {
@@ -21,5 +22,20 @@ export class StudentValidator {
         }
 
         return true;
-  }
+    }
+    static validateUpdate(data: UpdateStudentResponse) {
+        const requiredFields = ["name", "email"];
+
+        const missingField = requiredFields.find((field) => {
+            !data[field as keyof UpdateStudentResponse]
+        })
+
+        if (missingField) {
+            throw new Error(`O campo "${missingField}" é obrigatório.`);
+        }
+
+        if (!data.email.includes("@")) {
+            throw new Error("Email inválido.");
+        }
+    }
 }
