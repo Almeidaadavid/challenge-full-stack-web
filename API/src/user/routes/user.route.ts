@@ -10,5 +10,32 @@ export async function userRoute(app: FastifyInstance) {
     const userService = new UserService(userRepository);
     const userController = new UserController(userService);
 
-    app.post('/', userController.create);
+    app.post('/', {
+        schema: {
+            description: 'Create a new user',
+            tags: ['User'],
+            body: {
+                type: 'object',
+                required: ['name', 'email', 'password'],
+                properties: {
+                    name: { type: 'string'},
+                    email: { type: 'string', format: 'email'},
+                    password: { type: 'string' }
+                },
+            },
+            response: {
+                201: {
+                    type: 'null',
+                },
+                500: { 
+                    type: 'object', 
+                    properties: { 
+                        message: { 
+                            type: 'string' 
+                        } 
+                    } 
+                },
+            }
+        }
+    }, userController.create);
 }
