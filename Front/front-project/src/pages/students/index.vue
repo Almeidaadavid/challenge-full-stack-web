@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { getStudents } from '@/api/services/StudentService'
 import router from '@/router'
-import type { PaginationForm } from '@/api/forms/PaginationForm'
 import type { StudentsResponse } from '@/api/responses/GetStudentsResponse'
 import StudentModal from '@/components/ui/StudentModal.vue'
 import { maskCPF } from '@/utils/MaskUtils'
 import BaseCard from '@/components/ui/BaseCard.vue'
+import { showToast } from '@/lib/utils'
 
 const page = ref(1)
 const search = ref('')
@@ -74,8 +74,8 @@ const selectedStudentName = ref<string>('');
       serverItems.value = formattedResponse;
       totalItems.value = response.totalItems;
 
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      showToast(error.response.data.message, 'error');
     } finally {
       loading.value = false;
     }

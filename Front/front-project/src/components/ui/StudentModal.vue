@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { deleteStudent } from '@/api/services/StudentService';
+import { showToast } from '@/lib/utils';
 import { ref, defineProps, defineEmits } from 'vue';
 
 const props = defineProps<{
@@ -27,7 +28,7 @@ const removeStudent = async () => {
     await deleteStudent(props.id);
     emitClosed();
   } catch (error: any) {
-    console.error('Error deleting student:', error);
+    showToast(error.response.data.message, 'error');
   } finally {
     deleteTask.value = false;
   }

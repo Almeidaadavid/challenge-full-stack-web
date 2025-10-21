@@ -4,6 +4,7 @@ import { loginUser } from '@/api/services/AuthService'
 import { emailRules } from '@/utils/RulesUtils'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { showToast } from '@/lib/utils'
 
 const loading = ref(false)
 const router = useRouter()
@@ -17,13 +18,12 @@ const processLogin = async () => {
   debugger
   const { valid } = await formRef.value.validate();
   if (!valid) {
-    console.warn('Invalid form');
+    showToast('Please fill in the form correctly.', 'warning');
     return;
   }
 
   try {
     loading.value = true
-    debugger
     const data = await loginUser(email.value, password.value)
     login(data.token) 
     setUser({
@@ -32,7 +32,7 @@ const processLogin = async () => {
     });
     router.push('/students')
   } catch (error: any) {
-    console.error(error)
+    showToast(error.response.data.message, 'error');
   } finally {
     loading.value = false
   }

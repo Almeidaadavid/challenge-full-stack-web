@@ -1,6 +1,7 @@
 <script setup lang="ts">
 type StudentForm = Omit<Student, 'id'>;
 import { createStudent, updateStudent } from '@/api/services/StudentService'
+import { showToast } from '@/lib/utils';
 import type { Student } from '@/types/student.interface';
 import { maskCPF, maskEmail, maskPhone, unmaskCellphone, unmaskCPF } from '@/utils/MaskUtils';
 import { cellphoneRules, documentRules, emailRules, nameRules, studentRegistrationRules } from '@/utils/RulesUtils';
@@ -67,8 +68,8 @@ const editStudent = async (student: Student) => {
       course: student.course!,
     });
     emit('saved');
-  } catch (error) {
-    console.error('Error updating student:', error);
+  } catch (error:any) {
+    showToast(error.response.data.message, 'error');
   } finally {
     loading.value = false;
   }
@@ -87,8 +88,8 @@ const addStudent = async () => {
     };
     await createStudent(newStudent);
     emit('saved');
-  } catch (error) {
-    console.error('Error creating student:', error);
+  } catch (error: any) {
+    showToast(error.response.data.message, 'error');
   } finally {
     loading.value = false;
   }
