@@ -2,7 +2,7 @@ import { CreateStudentForm, UpdateStudentForm } from "../forms/student.form";
 
 export class StudentValidator {
     static validateCreate(data: CreateStudentForm) {
-        const requiredFields = ["name", "email", "Ra", "document"];
+        const requiredFields = ["name", "email", "studentRegistration", "document"];
 
         const missingField = requiredFields.find((field) => {
             !data[field as keyof CreateStudentForm]
@@ -16,7 +16,7 @@ export class StudentValidator {
             throw new Error("Email inválido.");
         }
 
-        if (data.Ra.length < 5) {
+        if (data.studentRegistration.length < 5) {
             throw new Error("RA deve ter pelo menos 5 caracteres.");
         }
 
