@@ -8,7 +8,7 @@ export class AuthController {
     login = async(request: FastifyRequest<{Body: LoginUserForm}>, reply: FastifyReply) => {
         try {
             const data = await this.authService.login(request.body);
-            return reply.send({data});
+            return reply.send(data);
         } catch(error: any) {
             throw Error(error);
         }
