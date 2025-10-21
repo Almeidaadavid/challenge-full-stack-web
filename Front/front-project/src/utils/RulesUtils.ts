@@ -1,4 +1,4 @@
-import { unmaskCPF } from "./MaskUtils";
+import { unmaskCellphone, unmaskCPF } from "./MaskUtils";
 
 export const emailRules: Array<(value: any) => boolean | string> = [
   value => {
@@ -63,3 +63,14 @@ export const studentRegistrationRules: Array<(value: any) => boolean | string> =
       return 'Student registration must have at least 5 characters.'
     }
 ];
+
+export const cellphoneRules: Array<(value: any) => boolean | string> = [
+  value => {
+    const cellphone = unmaskCellphone(value);
+    if (cellphone.length === 11 || cellphone.length === 0) 
+      return true;
+
+    return 'Cellphone must have 11 digits.'
+  }
+
+]
