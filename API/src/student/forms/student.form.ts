@@ -1,12 +1,16 @@
 export  interface CreateStudentForm {
     name: string,
     email: string,
-    Ra: string,
+    studentRegistration: string,
     document: string,
+    cellphone?: string,
+    course?: string
 }
 
 
 export interface UpdateStudentForm {
     name: string,
-    email: string
+    email: string,
+    course?: string,
+    cellphone?: string
 }
