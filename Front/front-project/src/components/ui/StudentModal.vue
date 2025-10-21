@@ -27,6 +27,7 @@ const removeStudent = async () => {
   try {
     await deleteStudent(props.id);
     emitClosed();
+    showToast('Student deleted successfully!', 'success');
   } catch (error: any) {
     showToast(error.response.data.message, 'error');
   } finally {

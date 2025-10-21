@@ -68,6 +68,7 @@ const editStudent = async (student: Student) => {
       course: student.course!,
     });
     emit('saved');
+    showToast('Student updated successfully!', 'success');
   } catch (error:any) {
     showToast(error.response.data.message, 'error');
   } finally {
@@ -87,6 +88,7 @@ const addStudent = async () => {
       document: unmaskCPF(internalStudent.value.document!),
     };
     await createStudent(newStudent);
+    showToast('Student created successfully!', 'success');
     emit('saved');
   } catch (error: any) {
     showToast(error.response.data.message, 'error');

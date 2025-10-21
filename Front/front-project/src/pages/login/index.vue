@@ -31,6 +31,7 @@ const processLogin = async () => {
       email: data.user.email
     });
     router.push('/students')
+    showToast('Login successful!', 'success');
   } catch (error: any) {
     showToast(error.response.data.message, 'error');
   } finally {
