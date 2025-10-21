@@ -1,9 +1,10 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { StudentService } from "../services/student.service";
 import { CreateStudentForm, UpdateStudentForm } from "../forms/student.form";
+import { PaginationForm } from "../../common/forms/pagination.form";
 
-interface RequestParams {
-    id: number,
+export interface RequestParams {
+    id: string,
 }
 export class StudentController {
     
@@ -11,18 +12,19 @@ export class StudentController {
 
     create = async(request: FastifyRequest<{Body: CreateStudentForm}>, reply: FastifyReply) => {
         try {
-            const {name,email,Ra,document} = request.body;
-            const createdStudent = await this.studentService.create({name, email,Ra,document})
+            
+            const {name,email,studentRegistration,document, cellphone, course} = request.body;
+            const createdStudent = await this.studentService.create({name,email,studentRegistration,document, cellphone, course})
             return reply.code(201).send();
         } catch (error: any) {
             throw Error(error);
         }
     }
 
-    getAll = async(request: FastifyRequest, reply: FastifyReply) => {
+    getAll = async(request: FastifyRequest<{Querystring: PaginationForm}>, reply: FastifyReply) => {
         try {
-            const students = await this.studentService.list();  
-            return reply.send({students});
+            const students = await this.studentService.list(request.query);  
+            return reply.send(students);
         } catch (error: any) {
             throw Error(error);
         }
@@ -31,7 +33,7 @@ export class StudentController {
     update = async(request: FastifyRequest<{Params: RequestParams, Body: UpdateStudentForm}>, reply: FastifyReply) => {
         try {
             const { id } = request.params;
-            await this.studentService.update(id, request.body);
+            await this.studentService.update(Number(id), request.body);
             return reply.code(204).send();
         } catch (error: any) {
             throw Error(error);
@@ -51,7 +53,7 @@ export class StudentController {
     delete = async(request: FastifyRequest<{Params: RequestParams}>, reply: FastifyReply) => {
         try {
             const { id }= request.params;
-            await this.studentService.delete(id);
+            await this.studentService.delete(Number(id));
             return reply.code(204).send()
         } catch (error: any) {
             throw Error(error);
