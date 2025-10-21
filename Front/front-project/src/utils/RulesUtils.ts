@@ -56,5 +56,10 @@ export const studentRegistrationRules: Array<(value: any) => boolean | string> =
         if (value) return true
 
         return 'Student registration is required.'
+    },
+    value => {
+      if (value.length >= 5) return true;
+
+      return 'Student registration must have at least 5 characters.'
     }
 ];
