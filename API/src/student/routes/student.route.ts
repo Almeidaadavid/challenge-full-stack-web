@@ -2,6 +2,8 @@ import { FastifyInstance } from "fastify";
 import { StudentRepository } from "../repositories/student.repository";
 import { StudentService } from "../services/student.service";
 import { StudentController } from "../controller/student.controller";
+import { RequestParams, StudentController } from "../controller/student.controller";
+import { AuthMiddleware } from "../../common/middlewares/auth.middleware";
 
 
 export async function studentRoute(app: FastifyInstance) {
@@ -14,4 +16,6 @@ export async function studentRoute(app: FastifyInstance) {
     app.get('/', studentController.getAll);
     app.patch('/:id', studentController.update)
     app.delete('/:id', studentController.delete)
+    app.get<{Params: RequestParams}> 
+        ('/:id', {preHandler: [AuthMiddleware]}, studentController.getById);
 }

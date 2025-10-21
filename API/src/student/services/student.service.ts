@@ -22,4 +22,8 @@ export class StudentService {
     delete = async(id: number) => {
         return await this.studentRepository.delete(id);
     }
+
+    getById = async(id: number) => {
+        return await this.studentRepository.findById(id);
+    }
 }

@@ -38,6 +38,16 @@ export class StudentController {
         }
     }
 
+    getById = async(request: FastifyRequest<{Params: RequestParams}>, reply: FastifyReply) => {
+        try {
+            const { id } = request.params;
+            const data = await this.studentService.getById(Number(id));
+            return reply.send(data);
+        } catch (error: any) {
+            throw Error(error);
+        }
+    }
+
     delete = async(request: FastifyRequest<{Params: RequestParams}>, reply: FastifyReply) => {
         try {
             const { id }= request.params;
