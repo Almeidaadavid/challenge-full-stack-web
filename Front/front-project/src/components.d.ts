@@ -12,8 +12,11 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppBarComponent: typeof import('./components/AppBarComponent.vue')['default']
+    BaseCard: typeof import('./components/ui/BaseCard.vue')['default']
+    BasePageComponent: typeof import('./components/ui/BasePageComponent.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     NavigationDrawerComponent: typeof import('./components/NavigationDrawerComponent.vue')['default']
+    PageCard: typeof import('./components/ui/PageCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     StudentComponent: typeof import('./components/ui/StudentComponent.vue')['default']
