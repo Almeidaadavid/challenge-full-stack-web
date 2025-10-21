@@ -29,3 +29,9 @@ export const getStudents = async(paginationForm: PaginationForm) : Promise<GetSt
     })
     return data;
 }
+
+export const deleteStudent = async(id: number) => {
+    const route = `${API_ENDPOINTS.STUDENT.DELETE}`.replace(':id', id.toString())
+    const { data } = await api.delete(route);
+    return data;
+}
