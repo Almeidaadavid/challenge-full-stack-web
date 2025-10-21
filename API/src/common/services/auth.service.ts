@@ -1,6 +1,6 @@
 import { LoginUserForm } from "../../user/forms/user.form";
 import { UserRepository } from "../../user/repositories/user.repository";
-import { BadRequestError, NotFoundError } from "../helpers/api-errors.helper";
+import { BadRequestError, NotFoundError, UnauthorizedError } from "../helpers/api-errors.helper";
 import { PasswordHelper } from "../helpers/password.helper";
 import { TokenHelper } from "../helpers/token.helper";
 import { LoginPayload } from "../interfaces/auth.interface";
@@ -13,12 +13,12 @@ export class AuthService {
         AuthValidator.validateLogin(login);
         const user = await this.userRepository.getByEmail(login.email);
         if (!user) {
-            throw new NotFoundError('User not found!');
+            throw new UnauthorizedError('Invalid email or password.');
         }
-        const validPassword = PasswordHelper.compare(login.password, user.password);
+        const validPassword = await PasswordHelper.compare(login.password, user.password);
 
         if (!validPassword) {
-            throw new BadRequestError('Invalid email or password.');
+            throw new UnauthorizedError('Invalid email or password.');
         }
 
         const token = TokenHelper.generate(user.id);

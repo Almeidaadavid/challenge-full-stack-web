@@ -11,10 +11,10 @@ export class AuthController {
       const data = await this.authService.login(request.body);
       return reply.send(data);
     } catch (error: any) {
-      if (error.message === "Invalid credentials") {
-        throw new UnauthorizedError("Invalid email or password.");
+      if (error.statusCode !== 500) {
+        throw new ApiError(error.message, error.statusCode);
       }
-      throw new ApiError("Unexpected error during login.", 500);
+       throw new ApiError("Unexpected error during login.", 500);
     }
   };
 }
