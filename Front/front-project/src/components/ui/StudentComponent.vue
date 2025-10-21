@@ -3,7 +3,7 @@ type StudentForm = Omit<Student, 'id'>;
 import { createStudent, updateStudent } from '@/api/services/StudentService'
 import type { Student } from '@/types/student.interface';
 import { maskCPF, maskEmail, maskPhone, unmaskCellphone, unmaskCPF } from '@/utils/MaskUtils';
-import { documentRules, emailRules, nameRules, studentRegistrationRules } from '@/utils/RulesUtils';
+import { cellphoneRules, documentRules, emailRules, nameRules, studentRegistrationRules } from '@/utils/RulesUtils';
 import { ref, watch, defineProps, defineEmits } from 'vue'
 
 const emit = defineEmits(['saved']);
@@ -40,6 +40,10 @@ watch(() => props.student?.id, (newId) => {
 function onCPFInput(e: Event) {
   const target = e.target as HTMLInputElement
   internalStudent.value.document = maskCPF(target.value)
+}
+
+const onStudentRegistrationInput = (val: string) => {
+  internalStudent.value.studentRegistration = val.replace(/\D/g, '')
 }
 
 function onPhoneInput(e: Event) {
@@ -149,7 +153,7 @@ const handleSubmit = async () => {
           <v-col cols="12" md="6" class="mb-4">
             <v-text-field
               v-model="internalStudent.studentRegistration"
-              label="RA"
+              label="RN"
               placeholder="Enter registration number"
               outlined
               dense
@@ -157,6 +161,7 @@ const handleSubmit = async () => {
               :disabled="isEdit"
               :rules="studentRegistrationRules"
               prepend-inner-icon="mdi-card-account-details-outline"
+              @input="onStudentRegistrationInput($event.target.value)"
             />
           </v-col>
 
@@ -195,6 +200,7 @@ const handleSubmit = async () => {
               outlined
               dense
               required
+              :rules="cellphoneRules"
               @input="onPhoneInput"
               prepend-inner-icon="mdi-cellphone"
             />
@@ -235,7 +241,6 @@ const handleSubmit = async () => {
   padding: 32px;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  background-color: #ffffff;
 }
 
 .card-title {
