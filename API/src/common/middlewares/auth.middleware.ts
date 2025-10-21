@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { TokenHelper } from "../helper/token.helper";
+import { TokenHelper } from "../helpers/token.helper";
 
 export async function AuthMiddleware(request: FastifyRequest, reply: FastifyReply) {
     const {authorization} = request.headers;

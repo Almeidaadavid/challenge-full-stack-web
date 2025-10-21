@@ -1,5 +1,5 @@
 import { CreateUserForm } from "../forms/user.form";
-import { PasswordHelper } from "../../common/helper/password.helper";
+import { PasswordHelper } from "../../common/helpers/password.helper";
 import { UserRepository } from "../repositories/user.repository";
 import { UserValidator } from "../validators/user.validator";
 
