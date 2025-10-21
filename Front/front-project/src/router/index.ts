@@ -17,6 +17,10 @@ const publicRoutes = ['/login', '/register'];
 router.beforeEach((to, from, next) => {
   const isAuthenticated = !!localStorage.getItem('myToken');
 
+  if (to.path === '/') {
+    return next('/login');
+  }
+
   if (!publicRoutes.includes(to.path) && !isAuthenticated) {
     return next('/login')
   }
