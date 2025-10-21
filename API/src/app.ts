@@ -2,6 +2,7 @@ import fastify from "fastify";
 import { InitializeDatabase } from "./common/database/initializeDatabase";
 import { Routes } from "./common/routes";
 import cors from '@fastify/cors';
+import { ErrorMiddleware } from "./common/middlewares/error.middleware";
 
 
 
@@ -27,7 +28,9 @@ export async function InitializeApplication() {
     });
 
     await app.register(Routes)
+    await app.register(ErrorMiddleware);
     const port = process.env.PORT || 3333;
+
 
     try {
         await app.listen({ port: Number(port) });
