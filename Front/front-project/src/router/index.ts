@@ -13,20 +13,20 @@ const router = createRouter({
   routes,
 })
 
-const publicRoutes = ['/login', '/register'];
+const publicRoutes = new Set(['/login', '/register'])
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = !!localStorage.getItem('myToken');
+  const isAuthenticated = !!localStorage.getItem('myToken')
 
   if (to.path === '/') {
-    return next('/login');
+    return next('/login')
   }
 
-  if (!publicRoutes.includes(to.path) && !isAuthenticated) {
+  if (!publicRoutes.has(to.path) && !isAuthenticated) {
     return next('/login')
   }
 
   next()
-});
+})
 
 // Workaround for https://github.com/vitejs/vite/issues/11804
 router.onError((err, to) => {
