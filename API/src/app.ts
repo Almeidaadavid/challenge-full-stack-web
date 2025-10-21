@@ -3,6 +3,7 @@ import { InitializeDatabase } from "./common/database/initializeDatabase";
 import { Routes } from "./common/routes";
 import cors from '@fastify/cors';
 import { ErrorMiddleware } from "./common/middlewares/error.middleware";
+import { SwaggerConfig } from "./configs/swagger.config";
 
 
 
@@ -27,11 +28,11 @@ export async function InitializeApplication() {
         methods: ['GET','POST','PATCH','DELETE','OPTIONS'],
     });
 
-    await app.register(Routes)
+    await SwaggerConfig(app);    
+    
+    await app.register(Routes);
     await app.register(ErrorMiddleware);
     const port = process.env.PORT || 3333;
-
-
     try {
         await app.listen({ port: Number(port) });
         app.log.info(`Servidor rodando na porta ${port}`);
