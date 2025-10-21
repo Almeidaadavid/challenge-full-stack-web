@@ -5,6 +5,7 @@ export interface StudentsResponse {
     name: string,
     email: string,
     studentRegistration: string
+    document: string
 }
 
 export interface GetStudentsResponse extends GetPaginatedResponse {
