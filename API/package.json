@@ -6,9 +6,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/server.ts",
     "dev:debug": "tsx watch --inspect src/server.ts",
-    "migration:generate": "tsx node_modules/typeorm/cli.js migration:generate -d ./src/db/data-source.ts",
-    "migration:run": "tsx node_modules/typeorm/cli.js migration:run -d ./src/db/data-source.ts",
-    "migration:revert": "tsx node_modules/typeorm/cli.js migration:revert -d ./src/db/data-source.ts"
+    "migration:generate": "tsx node_modules/typeorm/cli.js migration:generate -d ./src/common/database/datasource.ts",
+    "migration:run": "tsx node_modules/typeorm/cli.js migration:run -d ./src/common/database/datasource.ts",
+    "migration:revert": "tsx node_modules/typeorm/cli.js migration:revert -d ./src/common/database/datasource.ts"
   },
   "keywords": [],
   "author": "",
