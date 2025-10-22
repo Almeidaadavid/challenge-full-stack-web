@@ -21,7 +21,7 @@ export async function studentRoute(app: FastifyInstance) {
             tags: ['Student'],
             body: {
                     type: 'object',
-                    required: ['name', 'email', 'studentRegistration', 'document', 'cellphone', 'course'],
+                    required: ['name', 'email', 'studentRegistration', 'document'],
                     properties: {
                         name: { type: 'string'},
                         email: { type: 'string', format: 'email'},
@@ -173,23 +173,20 @@ export async function studentRoute(app: FastifyInstance) {
                     type: 'object',
                     required: ['id'],
                     properties: {
-                        id: { type: 'string' },
+                        id: { type: 'number' },
                     }
                 },
                 response: {
                     200: {
-                        type: 'array',
-                        items: {
-                            type: 'object',
-                            properties: {
-                                id: { type: 'number' },
-                                name: { type: 'string' },
-                                email: { type: 'string' },
-                                studentRegistration: { type: 'string' },
-                                document: { type: 'string' },
-                                cellphone: { type: 'string' },
-                                course: { type: 'string' },
-                            }
+                        type: 'object',
+                        properties: {
+                            id: { type: 'number' },
+                            name: { type: 'string' },
+                            email: { type: 'string' },
+                            studentRegistration: { type: 'string' },
+                            document: { type: 'string' },
+                            cellphone: { type: 'string' },
+                            course: { type: 'string' },
                         }
                     },
                     500: { 
