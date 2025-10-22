@@ -30,7 +30,7 @@ const processLogin = async () => {
       name: data.user.name,
       email: data.user.email
     });
-    router.push('/students')
+    router.push('/dashboard')
     showToast('Login successful!', 'success');
   } catch (error: any) {
     showToast(error.response.data.message, 'error');

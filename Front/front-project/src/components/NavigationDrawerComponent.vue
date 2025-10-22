@@ -45,7 +45,7 @@ function handleLogout() {
           <v-list-item v-else title="Convidado" subtitle="guest@example.com" />
           <v-divider />
           <v-list density="compact" nav>
-            <v-list-item prepend-icon="mdi-star" :disabled="true" title="Dashboard" to="/" />
+            <v-list-item prepend-icon="mdi-star" title="Dashboard" to="/dashboard" />
             <v-list-item prepend-icon="mdi-account-multiple" title="Students" to="/students" />
           </v-list>
       </v-list>
