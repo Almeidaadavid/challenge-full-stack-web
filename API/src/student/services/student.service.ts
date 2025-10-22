@@ -35,4 +35,16 @@ export class StudentService {
     getById = async(id: number) => {
         return await this.studentRepository.findById(id);
     }
+
+    getSummary = async() => {
+        const lastStudents = await this.studentRepository.findLastStudents();
+        const totalStudents = await this.studentRepository.count();
+        const totalCourses = await this.studentRepository.totalCourses();
+
+        return {
+            lastStudents,
+            totalStudents,
+            totalCourses
+        };
+    }
 }

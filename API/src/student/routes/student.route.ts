@@ -205,4 +205,41 @@ export async function studentRoute(app: FastifyInstance) {
                 }
             }
         }, studentController.getById);
+
+    app.get('/summary', { 
+        preHandler: [AuthMiddleware],
+        schema: {
+            description: 'Get student summary',
+            security: [{ bearerAuth: [] }],
+            tags: ['Student'],
+            resposne: {
+                200: {
+                    type: 'object',
+                    properties: {
+                        totalStudents: { type: 'number'},
+                        totalCourses: { type: 'string' },
+                        lastStudents: {
+                            type: 'array',
+                            items: {
+                                type: 'object',
+                                properties: {
+                                    id: { type: 'number' },
+                                    name: { type: 'string' },
+                                    course: { type: 'string' },
+                                }
+                            }
+                        }
+                    }
+                },
+                500: {
+                    type: 'object', 
+                    properties: {
+                        message: {
+                            type: 'string'
+                        } 
+                    } 
+                },
+            }
+        }
+     }, studentController.getSummary);
 }

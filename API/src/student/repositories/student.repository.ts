@@ -39,4 +39,26 @@ export class StudentRepository extends BaseRepository<Student> {
             totalPages: Math.ceil(total / limit),
         };
     }
+
+    async findLastStudents() {
+        const students = await this.repository.createQueryBuilder("student")
+                .orderBy("student.id", "DESC")
+                .take(5)
+                .select(["student.id", "student.name", "student.course"])
+                .getMany();
+        return students;
+    }
+
+    async count() {
+        const students = await this.repository.count();
+        return students;
+    }
+
+    async totalCourses() {
+        const { total_courses } = await this.repository
+        .createQueryBuilder("student")
+        .select("COUNT(DISTINCT student.course)", "total_courses")
+        .getRawOne();
+        return total_courses;
+    }
 }

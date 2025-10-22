@@ -59,4 +59,13 @@ export class StudentController {
             throw new ApiError(error.message || "Unexpected error while deleting student.", 500);
         }
     };
+
+    getSummary = async (request: FastifyRequest, reply: FastifyReply) => { 
+        try {
+            const summary = await this.studentService.getSummary();
+            return reply.send(summary);
+        } catch (error: any) {
+            throw new ApiError(error.message || "Unexpected error while fetching student summary.", 500);
+        }
+    }
 }
