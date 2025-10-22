@@ -18,6 +18,7 @@ export async function studentRoute(app: FastifyInstance) {
             preHandler: [AuthMiddleware],
             schema: {
                 description: 'Create a new student',
+                security: [{ bearerAuth: [] }],
             tags: ['Student'],
             body: {
                     type: 'object',
@@ -52,8 +53,9 @@ export async function studentRoute(app: FastifyInstance) {
             preHandler: [AuthMiddleware],
             schema: {
                 description: 'List all students with pagination',
-            tags: ['Student'],
-            querystring: {
+                security: [{ bearerAuth: [] }],
+                tags: ['Student'],
+                querystring: {
                     type: 'object',
                     properties: {
                         page: { type: 'number' },
@@ -102,6 +104,7 @@ export async function studentRoute(app: FastifyInstance) {
             preHandler: [AuthMiddleware],
             schema: {
                 description: 'Update a student by ID',
+                security: [{ bearerAuth: [] }],
                 tags: ['Student'],
                 params: {
                     type: 'object',
@@ -140,6 +143,7 @@ export async function studentRoute(app: FastifyInstance) {
             preHandler: [AuthMiddleware],
             schema: {
                 description: 'Delete a student by ID',
+                security: [{ bearerAuth: [] }],
                 tags: ['Student'],
                 params: {
                     type: 'object',
@@ -168,6 +172,7 @@ export async function studentRoute(app: FastifyInstance) {
             preHandler: [AuthMiddleware],
             schema: {
                 description: 'List all students with pagination',
+                security: [{ bearerAuth: [] }],
                 tags: ['Student'],
                 params: {
                     type: 'object',
