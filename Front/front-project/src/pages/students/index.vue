@@ -73,7 +73,6 @@ const selectedStudentName = ref<string>('');
         }));
       serverItems.value = formattedResponse;
       totalItems.value = response.totalItems;
-
     } catch (error: any) {
       showToast(error.response.data.message, 'error');
     } finally {

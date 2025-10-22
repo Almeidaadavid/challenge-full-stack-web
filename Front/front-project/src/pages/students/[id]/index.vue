@@ -18,7 +18,6 @@ const handleSaved = () => {
 }
 onMounted(async () => {
     try {
-        debugger
         const id = Number((route.params as { id: string }).id);
         const data = await getStudentById(id);
         student.value = data;
