@@ -43,7 +43,7 @@ export class StudentRepository extends BaseRepository<Student> {
     async findLastStudents() {
         const students = await this.repository.createQueryBuilder("student")
                 .orderBy("student.id", "DESC")
-                .take(5)
+                .take(3)
                 .select(["student.id", "student.name", "student.course"])
                 .getMany();
         return students;
